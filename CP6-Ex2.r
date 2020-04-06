@@ -1,5 +1,5 @@
-x = c(-1, 0, 3, 7)
-y = c(2, 0, 4, 7)
+x = c(-3, -1, 1, 3, 5, 7)
+y = c(14, 4, 2, 8, 22, 44)
 
 n = length(x)
 
@@ -12,5 +12,8 @@ B0 = (sum(y) - (B1 * sum(x))) / n
 plot(x, y)
 abline(B0, B1)
 
-print('For x = 1 predicted value is')
-print(B1 * 1 + B0)
+print('For x = 0 predicted value is')
+print(B1 * 0 + B0)
+
+print('For x = 2 predicted value is')
+print(B1 * 2 + B0)
