@@ -33,3 +33,6 @@ qqnorm(model.fit_scaled$residuals)
 qqline(model.fit_scaled$residuals)
 
 dev.off()
+
+require(lmtest)
+dwtest(model.fit_scaled)

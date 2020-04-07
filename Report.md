@@ -27,11 +27,10 @@ Con error residual de 0.2625.
 
 Ambos modelos comparten los siguientes datos:
 
-Multiple R-squared | 0.9724
----                |  ---
-Adjusted R-squared | 0.9311 
-F-statistic        | 23.53 on 3 and 2 DF
-p-value            | 0.04104
+    Multiple R-squared  0.9724
+    Adjusted R-squared  0.9311 
+    F-statistic         23.53 on 3 and 2 DF
+    p-value             0.04104
 
 El parámetro *Adjusted R-squared* es 0.93 lo cual es bueno, es cercano a 1. Vemos que el segundo modelo, con las variables estandarizadas, tiene menor error residual 0.26 vs 0.45. El *p-valor* del estadígrafo de F es menor q 0.05 por lo que existe una variable significativamente distinta de 0 en el modelo.
 
@@ -42,9 +41,8 @@ De aquí en adelante vamos a analizar el segundo modelo ya que presentó mejor a
 
 1. Media de errores:
 
-    Media de error residual | 2.312739e-17
-    ---                     |  ---
-    Suma de error residual  | 1.387779e-16
+        Media de error residual  2.312739e-17
+        Suma de error residual   1.387779e-16
 
     Por lo que se cumple que ambas son muy cercanas a 0.
 
@@ -53,7 +51,12 @@ De aquí en adelante vamos a analizar el segundo modelo ya que presentó mejor a
     ![Error Residual](plots.png "Error Residual")
 
 3. Independencia de los residuos
+    Al realizar el test de Durbin-Watson obtenemos:
 
+        DW = 1.6629, p-value = 0.3457
+
+    Como el $0.34 >> 0.05$ no podemos rechazar la hipótesis nula por lo que los errores son independientes.
+    
 4. Homocedasticidad
 
     
