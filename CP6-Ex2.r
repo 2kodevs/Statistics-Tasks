@@ -9,8 +9,15 @@ den = sum(x * x) - sum(x) * sum(x) / n
 B1 = num / den
 B0 = (sum(y) - (B1 * sum(x))) / n
 
+png('disp_diagram.png')
+
 plot(x, y)
 abline(B0, B1)
+
+dev.off()
+
+B0
+B1
 
 print('For x = 0 predicted value is')
 print(B1 * 0 + B0)
