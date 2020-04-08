@@ -50,7 +50,8 @@ De aquí en adelante vamos a analizar el segundo modelo ya que presentó mejor a
 
     ![Error Residual](plots.png "Error Residual")
 
-3. Independencia de los residuos
+3. Independencia de los residuos:
+   
     Al realizar el test de Durbin-Watson obtenemos:
 
         DW = 1.6629, p-value = 0.3457
@@ -59,4 +60,8 @@ De aquí en adelante vamos a analizar el segundo modelo ya que presentó mejor a
     
 4. Homocedasticidad
 
-    
+    Se realiza el gráfico de predicciones contra errores residuales:
+
+    ![Homocedasticidad](homo.png "Homocedasticidad")
+
+    Como podemos ver los valores son aleatorios por lo que se cumple la Homocedasticidad.

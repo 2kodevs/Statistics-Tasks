@@ -9,15 +9,18 @@ pairs(d)
 cor(d)
 
 model.fit = lm(profit ~ months + sales + price, data=d)
-summary(model.fit)
+print(summary(model.fit))
 
-d$months_scaled = scale(d$months)
-d$profit_scaled = scale(d$profit)
-d$sales_scaled = scale(d$sales)
-d$price_scaled = scale(d$price)
+d_scaled = data.frame(
+    months=scale(d$months),
+    profit=scale(d$profit),
+    sales=scale(d$sales),
+    price=scale(d$price)
+)
 
-model.fit_scaled = lm(profit_scaled ~ months_scaled + sales_scaled + price_scaled, data=d)
-summary(model.fit_scaled)
+model.fit_scaled = lm(profit ~ months + sales + price, data=d_scaled)
+
+print(summary(model.fit_scaled))
 
 print('Media de error residual (scaled)')
 print(mean(model.fit_scaled$residuals))
@@ -28,7 +31,7 @@ print(sum(model.fit_scaled$residuals))
 png('plots.png', width=800, height=400)
 par(mfrow=c(1,2))
 
-hist(model.fit_scaled$residuals)
+hist(model.fit_scaled$residuals, xlab='Residuals')
 qqnorm(model.fit_scaled$residuals)
 qqline(model.fit_scaled$residuals)
 
@@ -36,3 +39,22 @@ dev.off()
 
 require(lmtest)
 dwtest(model.fit_scaled)
+
+print(d_scaled)
+
+pred = predict(model.fit_scaled, data=data.frame(
+    months=scale(d$months),
+    sales=scale(d$sales),
+    price=scale(d$price)
+))
+
+print('Predicciones en modelo escalado')
+print(pred)
+
+print('Errores residuales')
+print(residuals(model.fit_scaled))
+
+png('homo.png')
+plot(pred, residuals(model.fit_scaled), xlab='Predictions', ylab='Residuals of scaled model')
+abline(h=0, lty=2)
+dev.off()
