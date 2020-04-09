@@ -13,6 +13,8 @@ El diagrama de dispersión queda de la siguiente forma:
 
 ![Diagrama de Dispersión](disp_diagram.png "Diagrama de dispersión")
 
+Al ver el diagrama y la forma en la que están distribuidos los puntos, notamos que lo mejor para estos datos es usar regresión cuadrática.
+
 Para $x = 0$ la recta predice el valor $y = 9.6667$
 
 Para $x = 2$ la recta predice el valor $y = 15.6667$
