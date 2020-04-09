@@ -13,4 +13,6 @@ El diagrama de dispersión queda de la siguiente forma:
 
 ![Diagrama de Dispersión](disp_diagram.png "Diagrama de dispersión")
 
+Al ver el diagrama y la forma en la que están distribuidos los puntos, notamos que lo mejor para estos datos es usar regresión lineal simple.
+
 Para $x = 1$ la recta predice el valor $y = 2.2903$
