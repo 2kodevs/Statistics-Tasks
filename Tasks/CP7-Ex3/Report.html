@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>CP 7 Ejercicio 3</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body class="vscode-light">
+        <h1 id="cp-7-ejercicio-3">CP 7 Ejercicio 3</h1>
+<p>En primer lugar se extraen los datos de Advertising.csv y se hace un scatter plot matrix entre todos los pares de variables del data frame. Es apreciable que los pares de variables independientes no parecen tener una relación lineal fuerte; y entre las variables independientes, y la dependiente, hay una relacion lineal visible para TV con las ventas(sales), y para radio con las mismas.</p>
+<p><img src="file:////media/teno/Backup/Universidad/Clases/4to Año/Probabilidades y Estadística/Estadistica/MiniProjects/Statistics-Tasks/Tasks/CP7-Ex3/cor.png" alt="Scatter Plot entre variables" title="Scatter Plot entre variables"></p>
+<p>Esta observación la apoya también la matriz de correlación:</p>
+<pre><code>              TV      radio  newspaper     sales
+TV        1.00000000 0.05480866 0.05664787 0.7822244
+radio     0.05480866 1.00000000 0.35410375 0.5762226
+newspaper 0.05664787 0.35410375 1.00000000 0.2282990
+sales     0.78222442 0.57622257 0.22829903 1.0000000   
+</code></pre>
+<p>Donde se aprecia que entre las variables independientes no hay correlación lineal. También se puede observar que entre las ventas y la TV existe una correlación lineal fuerte, y una débil entre las ventas y la radio.</p>
+<p>Se utilizaŕá el método <em>backward</em> para encontrar un modelo de regresión de estos datos.</p>
+<p>En primer lugar, se realizó una llamada al método <code>lm</code> para realizar la regresión múltiple:</p>
+<table>
+<thead>
+<tr>
+<th>Coefficients:</th>
+<th>Estimate</th>
+<th>Std. Error</th>
+<th>t value</th>
+<th>Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(Intercept)</td>
+<td>2.938889</td>
+<td>0.311908</td>
+<td>9.422</td>
+<td>&lt;2e-16</td>
+</tr>
+<tr>
+<td>radio</td>
+<td>0.188530</td>
+<td>0.008611</td>
+<td>21.893</td>
+<td>&lt;2e-16</td>
+</tr>
+<tr>
+<td>TV</td>
+<td>0.045765</td>
+<td>0.001395</td>
+<td>32.809</td>
+<td>&lt;2e-16</td>
+</tr>
+<tr>
+<td>newspaper</td>
+<td>-0.001037</td>
+<td>0.005871</td>
+<td>-0.177</td>
+<td>0.86</td>
+</tr>
+</tbody>
+</table>
+<p>Con error residual de 1.686 y los siguientes <em>Performance Measures</em>:</p>
+<pre><code>Multiple R-squared  0.8972
+Adjusted R-squared  0.8956 
+F-statistic         570.3 on 3 and 196 DF
+p-value             &lt; 2.2e-16
+</code></pre>
+<p>El parámetro <em>Adjusted R-squared</em> es <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0.90</mn></mrow><annotation encoding="application/x-tex">0.90</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">9</span><span class="mord">0</span></span></span></span> aproximadamente por lo podemos decir que el modelo es bastante bueno, es cercano a <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>, aunque no es el ideal. Se decidió no estandarizar el modelo ya que la diferencia del coeficiente de intercepto no es muy grande respecto al resto.</p>
+<p>Se prosigue entonces a encontrar un modelo mejor que este, eliminando una variable.</p>
+<p>En la tabla de coeficientes se puede observar que el Pr(&gt;|t|) para <em>newspaper</em> es mayor q <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0.05</mn></mrow><annotation encoding="application/x-tex">0.05</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span></span></span></span>, con lo cual se puede afirmar que no es significativa, que no está aportando nada al modelo, y por tanto se puede eliminar. Recuerde el lector, que al inicio se menciona la inexistencia de correlacion lineal entre esta variable y la variable dependiente. Por todo lo afirmado se elminó la variable independiente <em>newspaper</em> del modelo.</p>
+<p>Con el mismo procedimiento sobre el nuevo modelo, se obtuvieron los siguientes datos:</p>
+<table>
+<thead>
+<tr>
+<th>Coefficients:</th>
+<th>Estimate</th>
+<th>Std. Error</th>
+<th>t value</th>
+<th>Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(Intercept)</td>
+<td>2.92110</td>
+<td>0.29449</td>
+<td>9.919</td>
+<td>&lt;2e-16</td>
+</tr>
+<tr>
+<td>radio</td>
+<td>0.18799</td>
+<td>0.00804</td>
+<td>23.382</td>
+<td>&lt;2e-16</td>
+</tr>
+<tr>
+<td>TV</td>
+<td>0.04575</td>
+<td>0.00139</td>
+<td>32.909</td>
+<td>&lt;2e-16</td>
+</tr>
+</tbody>
+</table>
+<p>Con error residual de 1.681 y los siguientes <em>Performance Measures</em>:</p>
+<pre><code>Multiple R-squared  0.8972
+Adjusted R-squared  0.8962 
+F-statistic         859.6 on 2 and 197 DF
+p-value             &lt; 2.2e-16
+</code></pre>
+<p>El parámetro <em>Adjusted R-squared</em> es <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0.8962</mn><mo>&gt;</mo><mn>0.8956</mn></mrow><annotation encoding="application/x-tex">0.8962 &gt; 0.8956</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68354em;vertical-align:-0.0391em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">8</span><span class="mord">9</span><span class="mord">6</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">8</span><span class="mord">9</span><span class="mord">5</span><span class="mord">6</span></span></span></span>, lo cual es una pequeña mejoría, pero igual es aproximadamente <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0.90</mn></mrow><annotation encoding="application/x-tex">0.90</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">9</span><span class="mord">0</span></span></span></span> por lo podemos sacar las mismas conclusiones. El valor del coeficiente de intercepto disminuyó ligeramente, otro buen síntoma.</p>
+<p>Se puede ver que el segundo modelo, tiene menor error residual <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1.681</mn></mrow><annotation encoding="application/x-tex">1.681</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord">6</span><span class="mord">8</span><span class="mord">1</span></span></span></span> vs <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1.686</mn></mrow><annotation encoding="application/x-tex">1.686</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord">6</span><span class="mord">8</span><span class="mord">6</span></span></span></span>. El <em>p-valor</em> del estadígrafo de F es menor que <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0.05</mn></mrow><annotation encoding="application/x-tex">0.05</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span></span></span></span> por lo que existe una variable significativamente distinta de <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> en el modelo.</p>
+<p>Aunque los conocimientos de clase sugirieron solo la elminación de <em>newspaper</em>, se intentó aplicar el método para otros modelos con la eliminación de otras variables. Los resultados no fueron positivos ni alentadores, con errores residuales mucho más elevados y valores de los parámetros <em>Adjusted R-squared</em> mucho menores.</p>
+<p>De aquí en adelante se analiza el segundo modelo ya que presentó mejor ajuste a los datos.</p>
+<h3 id="an%c3%a1lisis-de-residuos">Análisis de residuos</h3>
+<hr>
+<ol>
+<li>
+<p>Media de errores:</p>
+<pre><code> Media de error residual  5.603157e-18
+ Suma de error residual   1.110223e-15
+</code></pre>
+<p>Por lo que se cumple que ambas son muy cercanas a <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>.</p>
+</li>
+<li>
+<p>El histograma de residuos no sigue exactamente el patrón de una distribución normal, sin embargo el <em>QQ-plot</em> muestra solo una pequeña desviación con respecto a la línea de la normal por tanto se puede asumir la normalidad de los errores.</p>
+<p><img src="file:////media/teno/Backup/Universidad/Clases/4to Año/Probabilidades y Estadística/Estadistica/MiniProjects/Statistics-Tasks/Tasks/CP7-Ex3/plotsRT.png" alt="Error Residual" title="Error Residual"></p>
+</li>
+<li>
+<p>Independencia de los residuos:</p>
+<p>Al realizar el test de Durbin-Watson obtenemos:</p>
+<pre><code> DW = 2.0808, p-value = 0.7172
+</code></pre>
+<p>Como <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0.71</mn><mo>&gt;</mo><mo>&gt;</mo><mn>0.05</mn></mrow><annotation encoding="application/x-tex">0.71 &gt;&gt; 0.05</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68354em;vertical-align:-0.0391em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">7</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span></span></span></span> no se rechaza la hipótesis nula por lo que se puede asumir que los errores son independientes.</p>
+</li>
+<li>
+<p>Homocedasticidad</p>
+<p>Se realiza el gráfico de predicciones contra errores residuales:</p>
+<p><img src="file:////media/teno/Backup/Universidad/Clases/4to Año/Probabilidades y Estadística/Estadistica/MiniProjects/Statistics-Tasks/Tasks/CP7-Ex3/homoRT.png" alt="Homocedasticidad" title="Homocedasticidad"></p>
+<p>Como se puede ver, el supuesto de Homocedasticidad se cumple.</p>
+</li>
+</ol>
+
+    </body>
+    </html>
