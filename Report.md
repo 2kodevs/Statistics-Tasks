@@ -3,6 +3,8 @@
 
 En primer lugar hacemos un scatter plot entre todos los pares de variables en el data frame. Podemos apreciar que todos los pares de variables parecen tener una relación lineal.
 
+![Scatter Plot entre variables](cor.png "Scatter Plot entre variables")
+
 A continuación se realizó llamada al método *lm* para realizar la regresión múltiple:
 
 Coefficients: | Estimate |Std. Error | t value  | Pr(>\|t\|)

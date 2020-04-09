@@ -5,7 +5,10 @@ price = c(0.95, 0.93, 0.92, 0.9, 0.87, 0.86)
 
 d = data.frame(months=months, profit=profit, sales=sales, price=price)
 
+png('cor.png')
 pairs(d)
+dev.off()
+
 cor(d)
 
 model.fit = lm(profit ~ months + sales + price, data=d)
