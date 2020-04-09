@@ -1,2 +1,3 @@
 # Statistics-Tasks
-Stadistics clases during the cuarentine
+Statistics classes during the quarantine
+
