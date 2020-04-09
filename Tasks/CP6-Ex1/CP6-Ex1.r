@@ -12,7 +12,6 @@ B0 = (sum(y) - (B1 * sum(x))) / n
 png('disp_diagram.png')
 
 plot(x, y)
-abline(B0, B1)
 
 dev.off()
 
