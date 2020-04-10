@@ -10,9 +10,29 @@ problem_data <- function() {
     return(data.frame(silo, days, mer, rtd, dif))
 }
 
+box_plot <- function(x, y, label) {
+    title <- 'Box-plot de las mediciones diarias'
+    png(paste('images/box-', label, '.png', sep = ''))
+    boxplot(x ~ y, ylab=paste('Medida - ', label, sep=''), xlab='Días', main=title)
+    dev.off()
+}
+
+qq_plot <- function(residuals, label) {
+    png(paste('images/qq-', label, '.png', sep=''))
+    qqnorm(residuals)
+    qqline(residuals)
+    dev.off()
+}
+
 make_model <- function(df, x, label) {
+    # Box Plot
+    box_plot(x, df$days, label)
+
     anova <- aov(x ~ df$silo + df$days)
     res <- anova$residuals
+
+    # Normal Q-Q plot
+    qq_plot(res, label)
 
     print(paste('---------', label, '---------'))
     print(summary(anova))
