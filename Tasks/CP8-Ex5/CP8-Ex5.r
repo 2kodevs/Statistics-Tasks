@@ -10,3 +10,22 @@ problem_data <- function() {
     return(data.frame(silo, days, mer, rtd, dif))
 }
 
+make_model <- function(df, x, label) {
+    anova <- aov(x ~ df$silo + df$days)
+    res <- anova$residuals
+
+    print(paste('---------', label, '---------'))
+    print(summary(anova))
+    
+    return()
+}
+
+main <- function() {
+    df <- problem_data()
+
+    make_model(df, df$mer, 'Mer')
+    make_model(df, df$rtd, 'Rtd')
+    make_model(df, df$dif, 'Diferencia')
+    
+    return()
+}
