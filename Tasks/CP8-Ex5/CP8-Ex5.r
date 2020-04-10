@@ -24,14 +24,39 @@ qq_plot <- function(residuals, label) {
     dev.off()
 }
 
+std_plot <- function(x, residuals, label) {
+    res_mean <- mean(residuals)
+    res_sd <- sd(residuals)
+    std_res <- (residuals - res_mean) / res_sd
+
+    png(paste('images/std-', label, '.png', sep=''))
+    plot(x, std_res)
+    abline(h = 0, lty = 2)
+    dev.off()
+}
+
+hist_plot <- function(residuals, label) {
+    png(paste('images/hist-', label, '.png', sep=''))
+    hist(residuals)
+    dev.off()
+}
+
 make_model <- function(df, x, label) {
     # Box Plot
     box_plot(x, df$days, label)
 
+    # Anova analysis
     anova <- aov(x ~ df$silo + df$days)
     res <- anova$residuals
 
-    # Normal Q-Q plot
+    # Check anova residual assumptions
+    # 1 - standardized Residuals
+    std_plot(x, res, label)
+
+    # 2 - Histogram 
+    hist_plot(res, label)
+
+    # 3 - Normal Q-Q plot
     qq_plot(res, label)
 
     print(paste('---------', label, '---------'))
@@ -49,3 +74,5 @@ main <- function() {
     
     return()
 }
+
+main()
