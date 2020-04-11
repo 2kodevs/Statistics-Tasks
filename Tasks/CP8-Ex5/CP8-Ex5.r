@@ -15,12 +15,22 @@ problem_data <- function() {
 box_plot <- function(x, df, label) {
     title <- 'Box-plot de las medias diarias'
     png(paste('images/box-', label, '-ByBlock.png', sep = ''))
-    boxplot(x ~ df$days, ylab=paste('Medida - ', label, sep=''), xlab='Días', main=title)
+    boxplot(
+        x ~ df$days, 
+        ylab=paste('Medida - ', label, sep=''), 
+        xlab='Días', 
+        main=title
+    )
     dev.off()
 
     title2 <- 'Box-plot de las medias por silo'
     png(paste('images/box-', label, '-ByFactor.png', sep = ''))
-    boxplot(x ~ df$silo, ylab=paste('Medida - ', label, sep=''), xlab='Silo', main=title2)
+    boxplot(
+        x ~ df$silo, 
+        ylab=paste('Medida - ', label, sep=''), 
+        xlab='Silo', 
+        main=title2
+    )
     dev.off()
 }
 
@@ -31,22 +41,40 @@ qq_plot <- function(residuals, label) {
     dev.off()
 }
 
-std_plot <- function(x, anova, residuals, label) {
-
-    png(paste('images/std-', label, '.png', sep=''))
-    plot(x, scale(residuals), ylab="Standardized Residuals", xlab="Samples", main="Anova Standardized Residuals")
-    abline(h = 0, lty = 2)
-    dev.off()
-
-    png(paste('images/anova-', label, '.png', sep=''))
-    plot(anova)
-    dev.off()
-    
-}
-
 hist_plot <- function(residuals, label) {
     png(paste('images/hist-', label, '.png', sep=''))
     hist(residuals)
+    dev.off()
+}
+
+std_plot <- function(anova, label) {
+    png(paste('images/std-', label, '.png', sep=''))
+    plot(
+        anova$fitted.values, 
+        rstudent(anova), 
+        ylab='Residuals',
+        xlab='Predictions',
+        main='Anova Residuals'
+    )
+    abline(h = 0, lty = 2)
+    dev.off()
+}
+
+plot_assumptions <- function(anova, label) {
+    png(paste('images/all-', label, '.png', sep=''))
+    layout(matrix(c(1,2,3,4), 2, 2, byrow=T))
+    plot(
+        anova$fitted.values, 
+        rstudent(anova), 
+        ylab='Residuals',
+        xlab='Predictions',
+        main='Anova Residuals'
+    )
+    abline(h = 0, lty = 2)
+    residuals <- anova$residuals
+    hist(residuals)
+    qqnorm(residuals)
+    qqline(residuals)
     dev.off()
 }
 
@@ -78,15 +106,11 @@ make_model <- function(df, x, label) {
     test_assumptions(anova, df)
 
     # Plots
-    # 1 - standardized Residuals
-    std_plot(x, anova, res, label)
-
-    # 2 - Histogram 
+    plot_assumptions(anova, label)
+    # Plot in separated images
+    std_plot(anova, label)
     hist_plot(res, label)
-
-    # 3 - Normal Q-Q plot
     qq_plot(res, label)
-
     
     return()
 }
