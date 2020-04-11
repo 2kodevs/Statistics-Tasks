@@ -1,6 +1,6 @@
 # CP 8 Ejercicio 5
 
-Inicialme se tomaron los datos mostrados en la tabla del problema y se acomodaron como se observa a continuación para facilitar su procesamiento.
+Inicialmente se tomaron los datos mostrados en la tabla del problema, y se acomodaron como se observa a continuación para facilitar su procesamiento.
 
 | $Silo$ | $Día$ | $Mer$ | $Rtd$ | $Diferencia$ |
 | :----: | :---: | :---: | :---: | :----------: |
@@ -30,7 +30,7 @@ Inicialme se tomaron los datos mostrados en la tabla del problema y se acomodaro
 |   E    |  D4   |  2.0  | -4.0  |     6.0      |
 |   E    |  D5   |  4.0  | -6.3  |     10.3     |
 
-Una vez agrupados los datos de esta forma se procede ha hacer el análisis ANOVA para cada una de las columnas $Mer$, $Rtd$ y $Dicferencia$.
+Una vez agrupados los datos de esta forma se procede ha hacer el análisis **ANOVA** para cada una de las columnas $Mer$, $Rtd$ y $Diferencia$.
 
 ## Mer:
 
@@ -42,19 +42,20 @@ Primeramente se realiza el análisis de las medias de factor y las de bloque.
 
 ![Medias de bloque](../images/box-Mer-ByBlock.png "Medias de bloque")
 
-Como se puede apreciar en los gráficos anteriores anparentemente no se tendrá un efecto dado por el factor silos en las medidas obtenidos usando $Mer$. Sin embargo por las medias diarias aunque todos los datos tiene un pequeña intersección como se observa en las cajas existe una caida en la media del cuarto día que podría representar la existencia de un efecto dado por los bloques, lo cual será verificado en breve con los resutados del modelo $Anova$.
+Como se puede apreciar en los gráficos anteriores aparentemente no se tendrá un efecto dado por el factor silos en las medidas obtenidas usando $Mer$. Sin embargo, en las medias diarias -aunque todos los datos tienen una pequeña intersección como se observa en las cajas- existe una caída en la media del cuarto día; que podría representar la existencia de un efecto dado por los bloques, lo cual será verificado en breve con los resultados del modelo **ANOVA**.
 
-> NOTA: para los análisis posteriores se fijara un nivel de significaión $\alpha = 0.05$
+> NOTA: para los análisis posteriores se fijará un nivel de significación $\alpha = 0.05$
+
 ### Paso 2
 
 ```
             Df Sum Sq Mean Sq F value Pr(>F)
-df$silo      4   4.46   1.115   0.690  0.609
-df$days      4   9.76   2.440   1.511  0.246
-Residuals   16  25.84   1.615            
+silo        4   4.46   1.115   0.690  0.609
+days        4   9.76   2.440   1.511  0.246
+Residuals   16  25.84   1.615
 ```
 
-El análisis de varianza de $Anova$ para los muestra la imposibilidad de rechazar la Hipótesis nula $H_0$ dado que ambos $p$-$value$ son mayores que la significación $\alpha$ prefijada, por tanto se puede decir que no varia la temperatura promedio de los silos incluso con el decursar de los días.
+El análisis de varianza de **ANOVA** para la muestra, tuvo como resultado la imposibilidad de rechazar la Hipótesis nula $H_0$ dado que ambos $p$-$value$ son mayores que la significación $\alpha$ prefijada, por tanto se puede decir que no varía la temperatura promedio de los silos, incluso con el decursar de los días.
 
 Para poder concluir con certeza es necesario realizar una verificación del cumplimientos de los 3 supuestos de este modelo. Para ello se utilizarán los residuos obtenidos en el paso anterior. Los supuestos mencionados son:
 
@@ -70,7 +71,7 @@ Para poder concluir con certeza es necesario realizar una verificación del cump
 
 ![Normal Q-Q Plot](../images/qq-Mer.png "Normal Q-Q Plot")
 
-Este grupo de gráficos junto a los test que se harán más adelante nos ayudaran a conocer si los datos obtenidos mediante $Anova$ son el resultado de un experimento válido.
+Este grupo de gráficos, junto a los test que se harán más adelante, nos ayudaran a conocer si los datos obtenidos mediante **Anova**, son el resultado de un experimento válido.
 
 ```
 Shapiro-Wilk normality test:
@@ -84,11 +85,10 @@ DW = 2.2717, p-value = 0.4632
 alternative hypothesis: true autocorrelation is greater than 0
 ```
 
-En la imágen de los residuos estandarizados los datos no aparentan tener una varianza constante dada la dispersión presente en ellos, sin embargo de las restantes gráficas se puede decir que los datos son bastante normales. Finalmente análizando los resultados de las tres pruebas se puede verificar que el experimento fue válido dado que ninguna de las pruebas fue significativa por lo que no se pueden rechazar las hipótesis que afirman el cumplimiento de los supuestos.
+En la imágen de los residuos estandarizados, los datos no aparentan tener una varianza constante dada la dispersión presente en ellos; sin embargo de las restantes gráficas se puede decir que los datos son bastante normales. Finalmente, analizando los resultados de las tres pruebas, se puede verificar que el experimento fue válido; dado que ninguna de las pruebas fue significativa, por lo que no se pueden rechazar las hipótesis que afirman el cumplimiento de los supuestos.
 
-Entonces se confirma la conclusión anterior dado que no hay elementos para negar que no varia la temperatura promedio de los silos incluso con el decursar de los días.
+Entonces se confirma la conclusión anterior, dado que no hay elementos para negar que no varía la temperatura promedio de los silos, incluso con el decursar de los días.
 
-> Nota: Las siguientes 2 secciones corresponden al análisis anova utilizando otros valores en las mediciónes por tanto se seguirán los mismos pasos mostrados en esta sección
-
+> Nota: Las siguientes 2 secciones corresponden al análisis a**ANOVA** utilizando otros valores en las mediciónes por tanto se seguirán los mismos pasos mostrados en esta sección.
 
 ## Rtd:
