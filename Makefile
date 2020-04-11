@@ -9,6 +9,9 @@ view: ## display the Makefile
 edit: ## open the Makefile with `code`
 	@code Makefile
 
+install: ## Install project requierments
+	@sudo apt-get install r-base r-cran-lmtest
+
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
