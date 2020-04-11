@@ -1,10 +1,10 @@
 require(lmtest)
 #Set absolute path to file
-data <- read.csv("./Advertising.csv")
+data <- read.csv(".files/Advertising.csv")
 
 data$X <- NULL
 
-png('cor.png')
+png('images/images/cor.png')
 pairs(data)
 dev.off()
 
@@ -25,7 +25,7 @@ print(mean(model.fit$residuals))
 print('Suma de error residual')
 print(sum(model.fit$residuals))
 
-png('plotsRTN.png', width=800, height=400)
+png('images/images/plotsRTN.png', width=800, height=400)
 par(mfrow=c(1,2))
 
 hist(model.fitRTN$residuals, xlab='Residuals', main='Radio + TV + Newspaper')
@@ -43,7 +43,7 @@ pred = predict(model.fitRTN, data=data.frame(
 ))
 
 
-png('homoRTN.png')
+png('images/homoRTN.png')
 plot(pred, residuals(model.fitRTN), xlab='Predictions', ylab='Residuals of model')
 abline(h=0, lty=2)
 dev.off()
@@ -59,7 +59,7 @@ print(mean(model.fitTN$residuals))
 print('Suma de error residual')
 print(sum(model.fitTN$residuals))
 
-png('plotsTN.png', width=800, height=400)
+png('images/plotsTN.png', width=800, height=400)
 par(mfrow=c(1,2))
 
 hist(model.fitTN$residuals, xlab='Residuals', main='TV + Newspaper')
@@ -77,7 +77,7 @@ pred = predict(model.fitTN, data=data.frame(
 ))
 
 
-png('homoTN.png')
+png('images/homoTN.png')
 plot(pred, residuals(model.fitTN), xlab='Predictions', ylab='Residuals of model')
 abline(h=0, lty=2)
 dev.off()
@@ -93,7 +93,7 @@ print(mean(model.fitRT$residuals))
 print('Suma de error residual')
 print(sum(model.fitRT$residuals))
 
-png('plotsRT.png', width=800, height=400)
+png('images/plotsRT.png', width=800, height=400)
 par(mfrow=c(1,2))
 
 hist(model.fitRT$residuals, xlab='Residuals', main='Radio + TV')
@@ -111,7 +111,7 @@ pred = predict(model.fitRT, data=data.frame(
 ))
 
 
-png('homoRT.png')
+png('images/homoRT.png')
 plot(pred, residuals(model.fitRT), xlab='Predictions', ylab='Residuals of model')
 abline(h=0, lty=2)
 dev.off()
@@ -127,7 +127,7 @@ print(mean(model.fitRN$residuals))
 print('Suma de error residual')
 print(sum(model.fitRN$residuals))
 
-png('plotsRN.png', width=800, height=400)
+png('images/plotsRN.png', width=800, height=400)
 par(mfrow=c(1,2))
 
 hist(model.fitRN$residuals, xlab='Residuals', main='Radio + Newspaper')
@@ -145,7 +145,7 @@ pred = predict(model.fitRN, data=data.frame(
 ))
 
 
-png('homoRN.png')
+png('images/homoRN.png')
 plot(pred, residuals(model.fitRN), xlab='Predictions', ylab='Residuals of model')
 abline(h=0, lty=2)
 dev.off()
