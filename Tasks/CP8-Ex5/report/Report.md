@@ -30,7 +30,7 @@ Inicialmente se tomaron los datos mostrados en la tabla del problema, y se acomo
 |   E    |  D4   |  2.0  | -4.0  |     6.0      |
 |   E    |  D5   |  4.0  | -6.3  |     10.3     |
 
-Una vez agrupados los datos de esta forma se procede ha hacer el análisis **ANOVA** para cada una de las columnas $Mer$, $Rtd$ y $Diferencia$.
+Una vez agrupados los datos de esta forma se procede a hacer el análisis **ANOVA** para cada una de las columnas $Mer$, $Rtd$ y $Diferencia$.
 
 ## Mer:
 
@@ -81,9 +81,9 @@ DW = 2.2717, p-value = 0.4632
 alternative hypothesis: true autocorrelation is greater than 0
 ```
 
-En la imágen de los residuos estandarizados, la dispersión presente en ellos sugiere que los mismos tienen una varianza constante; sin embargo las restantes gráficas no muestran que los residuos se comporte de manera normal. Finalmente, analizando los resultados de las tres pruebas, se puede verificar que el experimento fue válido; dado que ninguna de las pruebas fue significativa, por lo que no se pueden rechazar las hipótesis que afirman el cumplimiento de los supuestos.
+En la imagen de los residuos estandarizados, la dispersión presente en ellos sugiere que los mismos tienen una varianza constante; sin embargo las restantes gráficas no muestran que los residuos se comporte de manera normal. Finalmente, analizando los resultados de las tres pruebas, se puede verificar que el experimento fue válido; dado que el _p-value_ de ninguna de las pruebas fue significativo, por lo que no se pueden rechazar las hipótesis que afirman el cumplimiento de los supuestos.
 
-Entonces se confirma la conclusión anterior, dado que no hay elementos para negar que no varía la temperatura promedio de los silos, incluso con el decursar de los días.
+Entonces se confirma la conclusión anterior, dado que no hay elementos para afirmar que varía la temperatura promedio de los silos, incluso con el decursar de los días.
 
 > Nota: Las siguientes 2 secciones corresponden al análisis **ANOVA** utilizando otros valores en las mediciónes por tanto se seguirán los mismos pasos mostrados en esta sección.
 
@@ -95,18 +95,18 @@ Entonces se confirma la conclusión anterior, dado que no hay elementos para neg
 
 ![Medias de bloque](../images/box-Rtd-ByBlock.png "Medias de bloque")
 
-Respecto a las mediciones con $Rtd$ se pueden apreciar variaciones en cuanto al factor silo en de las medias que apuntan a la existencia de un efecto provocado por este factor. Por la otra parte no se puede decir lo mismo con certeza sobre el efecto bloque dado que las medias diarias son bastante similares a excepción de la del 4to día.
+Respecto a las mediciones con $Rtd$ se pueden apreciar variaciones en cuanto al factor silo en las medias que apuntan a la existencia de un efecto provocado por este factor. Por la otra parte, no se puede decir lo mismo con certeza sobre el efecto bloque, dado que las medias diarias son bastante similares a excepción de la del 4to día.
 
 ### Paso 2
 
 ```
-            Df Sum Sq Mean Sq F value   Pr(>F)    
-df$silo      4 182.53   45.63   8.091 0.000912 ***
-df$days      4  62.01   15.50   2.749 0.064865 .  
+            Df Sum Sq Mean Sq F value   Pr(>F)
+silo        4  182.53   45.63   8.091 0.000912 ***
+days        4   62.01   15.50   2.749 0.064865 .
 Residuals   16  90.24    5.64
 ```
 
-A diferencia de lo ocurrido con $Mer$ al aplicar el análisis **ANOVA** en esta medición vemos como se confirman las sospechas del paso anterior dadas por los datos apreciables en los gráficos de caja. El $p$-$value$ relativo a los silos resulto ser menor que la significación establecida lo cual implica que al menos en uno de los silos la temperatura promedio varía. Claramente es necesario validar esta implicación con los resultados del paso 3 antes de dar una conclusión.
+A diferencia de lo ocurrido con $Mer$ al aplicar el análisis **ANOVA** en esta medición, vemos como se confirman las sospechas del paso anterior dadas por los datos apreciables en los gráficos de caja. El _p-value_ relativo a los silos resultó ser menor que la significación establecida, lo cual implica que en al menos uno de los silos, la temperatura promedio varía. Claramente es necesario validar esta implicación con los resultados del paso 3 antes de dar una conclusión.
 
 ### Paso 3
 
@@ -118,11 +118,11 @@ DW = 1.5071, p-value = 0.02693
 alternative hypothesis: true autocorrelation is greater than 0
 ```
 
-En este caso de las imágenes muestran datos semejantes a los obenidos con el $Mer$. Los residuos se encuentran dispersos lo cual habla de su varianza constante, el QQ-Plot por el contrario se acerca más a un comportamiento normal pero el histograma tampoco presenta una forma de campana evidene que nos permita creer el cumplimiento del 1er supuesto.
+En este caso de las imágenes muestran datos semejantes a los obtenidos con el $Mer$. Los residuos se encuentran dispersos lo cual habla de su varianza constante, el QQ-Plot por el contrario se acerca más a un comportamiento normal; pero el histograma, tampoco presenta una forma de campana evidente que nos permita creer el cumplimiento del 1er supuesto.
 
-Sucede que al aplicar los test se rechaza que los residuos son independientes dado que el test de **Durbin-Watson** fue significativo por lo cual se rechaza la hipotesis del cumplimiento de este supuesto.
+Sucede que al aplicar los test se rechaza que los residuos son independientes dado que el test de **Durbin-Watson** fue significativo por lo cual se rechaza la hipótesis del cumplimiento de este supuesto.
 
-Al fallar los test pierden validez los resultados obtenidos hasta la sección dos dado que en cualquier análisis de varianza queda supeditada dicha validez a que los supuestos del modelo se cumplan. Por tanto no se tienen datos suficientes para hablar del comportamiento de las medidas, de donde no se puede afirmar que se comporten de la misma manera las mediciones en cuanto a los silos y los días.
+Al fallar los test, pierden validez los resultados obtenidos hasta la sección dos, dado que en cualquier análisis de varianza queda supeditada dicha validez a que los supuestos del modelo se cumplan. Por tanto no se tienen datos suficientes para hablar del comportamiento de las medidas, de donde no se puede afirmar que se comporten de la misma manera las mediciones en cuanto a los silos y los días.
 
 ## Diferencias:
 
@@ -137,13 +137,13 @@ Análogamente a $Rtd$ vemos en los gráficos de cajas que puede existir un efect
 ### Paso 2
 
 ```
-            Df Sum Sq Mean Sq F value  Pr(>F)   
-df$silo      4  96.81  24.203   6.660 0.00236 **
-df$days      4  41.96  10.490   2.887 0.05640 . 
+            Df Sum Sq Mean Sq F value  Pr(>F)
+silo         4  96.81  24.203   6.660 0.00236
+days         4  41.96  10.490   2.887 0.05640
 Residuals   16  58.15   3.634
 ```
 
-Nuevamente el análisis **ANOVA** muestra la existencia de un efecto provocado por los silos en la diferencia de las mediciones, dado que el $p$-$value$ referente a dicho efecto es menor que $\alpha$.
+Nuevamente el análisis **ANOVA**, muestra la existencia de un efecto provocado por los silos en la diferencia de las mediciones, dado que el _p-value_ referente a dicho efecto es menor que $\alpha$ fijado.
 
 ### Paso 3
 
@@ -155,8 +155,8 @@ DW = 1.4283, p-value = 0.01668
 alternative hypothesis: true autocorrelation is greater than 0
 ```
 
-El análisis de este paso es exactamente igual al de la sección anterior dado q se obtienen los mismos resultados. Del comportamiento de los gráficos se desprenden los mismos resultados -a pesar de que el QQ-Plot mejora- y la prueba de independencia vuleve a fallar dejandonos sin argumentos suficientes para dar una conclusión certera. Por tanto no se puede afirmar la coincidencia de las mediciones.
+El análisis de este paso es exactamente igual al de la sección anterior dado q se obtienen los mismos resultados. Del comportamiento de los gráficos se desprenden los mismos resultados -a pesar de que el QQ-Plot mejora- y la prueba de independencia vuelve a fallar, dejándonos sin argumentos suficientes para dar una conclusión certera. Por tanto no se puede afirmar la coincidencia de las mediciones.
 
 # Conclusiones
 
-El método aplicado usualmente mediante las mediciones $Mer$ es un método seguro dado que se puede comprobar que sus resultados no se ven modificados por factores externos. Sin embargo al intentar saccar conclusiones relativas al $Rtd$ no se logró siquiera comprobar si se comporta de manera correcta o incorrecta mediante la aplicación del modelo de **ANOVA** a tal punto que incluso el comportamiento de las diferencias entre los resultados quedo indefinido tras la aplicación del mismo análisis. Por tanto la medicónes con $Rtd$ facilitan el proceso pero añaden cierta duda a los datos que se obtienen.
+El método aplicado usualmente mediante las mediciones $Mer$ es un método seguro, dado que se puede comprobar que sus resultados no se ven modificados por factores externos. Sin embargo al intentar sacar conclusiones relativas al $Rtd$, no se logró siquiera comprobar si se comporta de manera correcta o incorrecta mediante la aplicación del modelo de **ANOVA**, a tal punto que incluso el comportamiento de las diferencias entre los resultados quedó indefinido tras la aplicación del mismo análisis. Por tanto, la mediciones con $Rtd$ facilitan el proceso pero añaden cierta duda a los datos que se obtienen.
