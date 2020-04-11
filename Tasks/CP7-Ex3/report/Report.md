@@ -2,7 +2,7 @@
 
 En primer lugar se extraen los datos de Advertising.csv y se hace un scatter plot matrix entre todos los pares de variables del data frame. Es apreciable que los pares de variables independientes no parecen tener una relación lineal fuerte; y entre las variables independientes, y la dependiente, hay una relacion lineal visible para TV con las ventas(sales), y para radio con las mismas.
 
-![Scatter Plot entre variables](cor.png "Scatter Plot entre variables")
+![Scatter Plot entre variables](../images/cor.png "Scatter Plot entre variables")
 
 Esta observación la apoya también la matriz de correlación:
 
@@ -73,7 +73,7 @@ De aquí en adelante se analiza el segundo modelo ya que presentó mejor ajuste 
 
 2. El histograma de residuos no sigue exactamente el patrón de una distribución normal, sin embargo el _QQ-plot_ muestra solo una pequeña desviación con respecto a la línea de la normal por tanto se puede asumir la normalidad de los errores.
 
-    ![Error Residual](plotsRT.png "Error Residual")
+    ![Error Residual](../images/plotsRT.png "Error Residual")
 
 3. Independencia de los residuos:
 
@@ -87,6 +87,6 @@ De aquí en adelante se analiza el segundo modelo ya que presentó mejor ajuste 
 
     Se realiza el gráfico de predicciones contra errores residuales:
 
-    ![Homocedasticidad](homoRT.png "Homocedasticidad")
+    ![Homocedasticidad](../images/homoRT.png "Homocedasticidad")
 
     Como se puede ver, el supuesto de Homocedasticidad se cumple.
