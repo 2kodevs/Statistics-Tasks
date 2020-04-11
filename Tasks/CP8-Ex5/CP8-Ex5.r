@@ -1,6 +1,8 @@
+require(lmtest)
+
 problem_data <- function() {
     mer <- c(4.0, 4.0, 5.0, 0.5, 3.0, 5.0, 6.0, 2.0, 4.0, 4.0, 4.5, 4.0, 3.5, 2.0, 3.0, 2.5, 4.0, 6.5, 4.5, 4.0, 4.0, 4.0, 3.5, 2.0, 4.0)
-    rtd <- c(2.6, 2.8, 5.0, 0.0, 2.4, 6.4, 6.4, 2.4, 4.2, 4.0, 3.3, 1.4, 1.8, -1.9, -7.6, 3.1, 5.0, 6.6, 2.7, 6.3, 0.0, 0.4, 0.6, -4.0, -6.3)
+    rtd <- c(2.6, 2.8, 5.0, 0.0, 2.4, 6.4, 6.4, 2.3, 4.2, 4.0, 3.3, 1.4, 1.8, -1.9, -7.6, 3.1, 5.0, 6.6, 2.7, 6.3, 0.0, 0.4, 0.6, -4.0, -6.3)
     dif <- mer - rtd
 
     days <- c('D1', 'D2', 'D3', 'D4', 'D5')
@@ -10,10 +12,15 @@ problem_data <- function() {
     return(data.frame(silo, days, mer, rtd, dif))
 }
 
-box_plot <- function(x, y, label) {
-    title <- 'Box-plot de las mediciones diarias'
-    png(paste('images/box-', label, '.png', sep = ''))
-    boxplot(x ~ y, ylab=paste('Medida - ', label, sep=''), xlab='Días', main=title)
+box_plot <- function(x, df, label) {
+    title <- 'Box-plot de las medias diarias'
+    png(paste('images/box-', label, '-ByBlock.png', sep = ''))
+    boxplot(x ~ df$days, ylab=paste('Medida - ', label, sep=''), xlab='Días', main=title)
+    dev.off()
+
+    title2 <- 'Box-plot de las medias por silo'
+    png(paste('images/box-', label, '-ByFactor.png', sep = ''))
+    boxplot(x ~ df$silo, ylab=paste('Medida - ', label, sep=''), xlab='Silo', main=title2)
     dev.off()
 }
 
@@ -24,15 +31,17 @@ qq_plot <- function(residuals, label) {
     dev.off()
 }
 
-std_plot <- function(x, residuals, label) {
-    res_mean <- mean(residuals)
-    res_sd <- sd(residuals)
-    std_res <- (residuals - res_mean) / res_sd
+std_plot <- function(x, anova, residuals, label) {
 
     png(paste('images/std-', label, '.png', sep=''))
-    plot(x, std_res)
+    plot(x, scale(residuals), ylab="Standardized Residuals", xlab="Samples", main="Anova Standardized Residuals")
     abline(h = 0, lty = 2)
     dev.off()
+
+    png(paste('images/anova-', label, '.png', sep=''))
+    plot(anova)
+    dev.off()
+    
 }
 
 hist_plot <- function(residuals, label) {
@@ -41,17 +50,36 @@ hist_plot <- function(residuals, label) {
     dev.off()
 }
 
+test_assumptions <- function(anova, df) {
+    print("    ++ Shapiro ++     ")
+    print(shapiro.test(anova$residuals))
+
+    print("    ++ Bartlett ++     ")
+    print(bartlett.test(anova$residuals, df$silo))
+
+    print("    ++ Durbin-Watson ++     ")
+    print(dwtest(anova))
+}
+
 make_model <- function(df, x, label) {
     # Box Plot
-    box_plot(x, df$days, label)
+    box_plot(x, df, label)
 
     # Anova analysis
     anova <- aov(x ~ df$silo + df$days)
     res <- anova$residuals
 
+    print(paste('---------', label, '---------'))
+    print('    ++ Anova ++    ')
+    print(summary(anova))
+
     # Check anova residual assumptions
+    # Test
+    test_assumptions(anova, df)
+
+    # Plots
     # 1 - standardized Residuals
-    std_plot(x, res, label)
+    std_plot(x, anova, res, label)
 
     # 2 - Histogram 
     hist_plot(res, label)
@@ -59,8 +87,6 @@ make_model <- function(df, x, label) {
     # 3 - Normal Q-Q plot
     qq_plot(res, label)
 
-    print(paste('---------', label, '---------'))
-    print(summary(anova))
     
     return()
 }
