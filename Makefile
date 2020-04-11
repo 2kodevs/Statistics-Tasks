@@ -1,5 +1,8 @@
 .DEFAULT_GOAL 	:= help
 
+CP8-Ex5: ## run the CP8-Ex5 R script and show its output
+	@cd Tasks/CP8-Ex5/ && Rscript CP8-Ex5.r
+
 view: ## display the Makefile
 	@cat Makefile
 
