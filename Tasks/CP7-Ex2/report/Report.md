@@ -3,7 +3,7 @@
 
 En primer lugar hacemos un scatter plot entre todos los pares de variables en el data frame. Podemos apreciar que todos los pares de variables parecen tener una relación lineal.
 
-![Scatter Plot entre variables](cor.png "Scatter Plot entre variables")
+![Scatter Plot entre variables](../images/cor.png "Scatter Plot entre variables")
 
 A continuación se realizó llamada al método *lm* para realizar la regresión múltiple:
 
@@ -50,7 +50,7 @@ De aquí en adelante vamos a analizar el segundo modelo ya que presentó mejor a
 
 2. Podemos ver el histograma de residuos y el gráfico QQ-Plot para asegurar que los errores están distribuidos normal:
 
-    ![Error Residual](plots.png "Error Residual")
+    ![Error Residual](../images/plots.png "Error Residual")
 
 3. Independencia de los residuos:
    
@@ -64,6 +64,6 @@ De aquí en adelante vamos a analizar el segundo modelo ya que presentó mejor a
 
     Se realiza el gráfico de predicciones contra errores residuales:
 
-    ![Homocedasticidad](homo.png "Homocedasticidad")
+    ![Homocedasticidad](../images/homo.png "Homocedasticidad")
 
     Como podemos ver los valores son aleatorios por lo que se cumple la Homocedasticidad.

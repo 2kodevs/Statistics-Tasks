@@ -9,7 +9,7 @@ den = sum(x * x) - sum(x) * sum(x) / n
 B1 = num / den
 B0 = (sum(y) - (B1 * sum(x))) / n
 
-png('disp_diagram.png')
+png('images/disp_diagram.png')
 plot(x, y)
 dev.off()
 

@@ -5,7 +5,7 @@ price = c(0.95, 0.93, 0.92, 0.9, 0.87, 0.86)
 
 d = data.frame(months=months, profit=profit, sales=sales, price=price)
 
-png('cor.png')
+png('images/cor.png')
 pairs(d)
 dev.off()
 
@@ -31,7 +31,7 @@ print(mean(model.fit_scaled$residuals))
 print('Suma de error residual (scaled)')
 print(sum(model.fit_scaled$residuals))
 
-png('plots.png', width=800, height=400)
+png('images/plots.png', width=800, height=400)
 par(mfrow=c(1,2))
 
 hist(model.fit_scaled$residuals, xlab='Residuals')
@@ -57,7 +57,7 @@ print(pred)
 print('Errores residuales')
 print(residuals(model.fit_scaled))
 
-png('homo.png')
+png('images/homo.png')
 plot(pred, residuals(model.fit_scaled), xlab='Predictions', ylab='Residuals of scaled model')
 abline(h=0, lty=2)
 dev.off()

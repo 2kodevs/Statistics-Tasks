@@ -17,7 +17,7 @@ En el ejercicio se analizan los siguientes datos :
 
 **a)** Construya el diagrama de dispersión utilizando $x$ = costo de lujo y $y$ = costo semejante. ¿Parece ser lineal la relación? Explique.
 
-![Diagrama de Dispersión](disp_diagram.png "Diagrama de dispersión")
+![Diagrama de Dispersión](../images/disp_diagram.png "Diagrama de dispersión")
 
 La relación parece ser lineal dado que los datos visiblemente cumplen los supuestos; esto es, su varianza se aprecia constante, la dispersión de los datos no es muy grande, y se podría trazar una recta con pendiente positiva a modo de definir un modelo de regresión lineal simple.
 
@@ -29,7 +29,7 @@ $y = x * 0.36966 + 15233$
 
 **c)** Trace la recta en el diagrama de dispersión.
 
-![Recta en el diagrama de Dispersión](line_diagram.png "Recta en el diagrama de dispersión")
+![Recta en el diagrama de Dispersión](../images/line_diagram.png "Recta en el diagrama de dispersión")
 
 **d)** Interprete la pendiente de la ecuación de regresión.
 
