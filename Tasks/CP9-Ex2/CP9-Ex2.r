@@ -17,6 +17,18 @@ main <- function(){
     print("")
     print("     --- Corelation Summary ---")
     print(symnum(matrix))
+
+    print("")
+    print("     --- ACP ---")
+    acp <- prcomp(data, scale=TRUE)
+    print(summary(acp))
+    png('images/acp-plot.png')
+    plot(acp)
+    dev.off()
+
+    print("")
+    print("     --- ACP Rotation ---")
+    print(acp$rotation)
 }
 
 main()
