@@ -3,3 +3,20 @@ load_data <- function() {
     return(data)
 }
 
+main <- function(){
+    data <- load_data()
+
+    png('images/correlation-plot.png')
+    plot(data)
+    dev.off()
+
+    matrix <- cor(data)
+    print("     --- Corelation Matrix ---")
+    print(matrix)
+
+    print("")
+    print("     --- Corelation Summary ---")
+    print(symnum(matrix))
+}
+
+main()
