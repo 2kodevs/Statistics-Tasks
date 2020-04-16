@@ -12,19 +12,19 @@ Un segundo acercamiento a la correlación de las variables nos los brinda la mat
 
 ![Matriz de Correlación](../images/cor-matrix.png "Matriz de Correlación")
 
+
 Esta tabla también es dificir de seguir así que utilizaremos una versión de ella más fácil de analizar mediante la utilización de símbolos.
 
-|              |  id   | gender | educ  | jobcat | salary | salbegin | jobtime | prevexp | minority |
-| :----------: | :---: | :----: | :---: | :----: | :----: | :------: | :-----: | :-----: | :------: |
-|    **id**    |   1   |        |       |        |        |          |         |         |          |
-|  **gender**  |       |   1    |       |        |        |          |         |         |          |
-|   **educ**   |       |   .    |   1   |        |        |          |         |         |          |
-|  **jobcat**  |       |   .    |   .   |   1    |        |          |         |         |          |
-|  **salary**  |       |   .    |   ,   |   ,    |   1    |          |         |         |          |
-| **salbegin** |       |   .    |   ,   |   ,    |   +    |    1     |         |         |          |
-| **jobtime**  |   B   |        |       |        |        |          |    1    |         |          |
-| **prevexp**  |       |        |       |        |        |          |         |    1    |          |
-| **minority** |       |        |       |        |        |          |         |         |    1     |
+|              | gender | educ  | jobcat | salary | salbegin | jobtime | prevexp | minority |
+| :----------: | :----: | :---: | :----: | :----: | :------: | :-----: | :-----: | :------: |
+|  **gender**  |   1    |       |        |        |          |         |         |          |
+|   **educ**   |   .    |   1   |        |        |          |         |         |          |
+|  **jobcat**  |   .    |   .   |   1    |        |          |         |         |          |
+|  **salary**  |   .    |   ,   |   ,    |   1    |          |         |         |          |
+| **salbegin** |   .    |   ,   |   ,    |   +    |    1     |         |         |          |
+| **jobtime**  |        |       |        |        |          |    1    |         |          |
+| **prevexp**  |        |       |        |        |          |         |    1    |          |
+| **minority** |        |       |        |        |          |         |         |    1     |
 
 ### Leyenda:
 
@@ -36,11 +36,11 @@ Como se muestra, se está en presencia de datos que no son altamente correlacion
 
 Como resultado se obtiene la importancia de las componentes
 
-|                        |  PC1   |  PC2   |  PC3   |  PC4   |   PC5   |   PC6   |  PC7   |   PC8   |
-| :--------------------: | :----: | :----: | :----: | :----: | :-----: | :-----: | :----: | :-----: |
-|   Standard deviation   | 1.8551 | 1.1378 | 1.0149 | 0.9359 | 0.78722 | 0.62939 | 0.4939 | 0.31350 |
-| Proportion of Variance | 0.4302 | 0.1618 | 0.1288 | 0.1095 | 0.07746 | 0.04952 | 0.0305 | 0.01228 |
-| Cumulative Proportion  | 0.4302 | 0.5920 | 0.7208 | 0.8302 | 0.90770 | 0.95722 | 0.9877 | 0.99983 |
+|                            |  PC1   |  PC2   |  PC3   |  PC4   |   PC5   |   PC6   |  PC7   |   PC8   |
+| :------------------------: | :----: | :----: | :----: | :----: | :-----: | :-----: | :----: | :-----: |
+|   **Standard deviation**   | 1.8551 | 1.1378 | 1.0149 | 0.9359 | 0.78722 | 0.62939 | 0.4939 | 0.31350 |
+| **Proportion of Variance** | 0.4302 | 0.1618 | 0.1288 | 0.1095 | 0.07746 | 0.04952 | 0.0305 | 0.01228 |
+| **Cumulative Proportion**  | 0.4302 | 0.5920 | 0.7208 | 0.8302 | 0.90770 | 0.95722 | 0.9877 | 0.99983 |
 
 Dado los valores principales de las componentes, se observa que las 3 primeras representan a más  del $70\%$ de los datos, por tanto podemos tomarlas como componentes principales, lo cual se puede corraborar con el criterio de **Kaiser** dado que son las únicas columnas con valores propios mayores que uno. Tambien podemos ver este comportamiento gráficamente.
 
@@ -65,9 +65,9 @@ Por cada componente es necesario obtener su mayor valor propio para luego selecc
 
 - **PC1:** La primera componente presenta un impacto negativo de casi todas las variables involucradas, lo que quiere decir que es una muestra caracterizada por el salario inicial, salario, categoría del trabajo, educación y género.
 
-- **PC2:** Por la segunda componente tomamos el mayor valor propio $0.40$, y lo dividimos entre $2$, esto da $0.20$, todo valor propio cuyo módulo esté por encima de $0.20$ en la columna de la **PC2**, nos dará las variables que conforman esta componente. Por tanto la interpretación sería que la **PC2** está caracterizada por una muestra caracterizada por el género, educación, salario, experiencia previa y minoría.
+- **PC2:** Por la segunda componente tomamos el mayor valor propio $0.40$, y lo dividimos entre $2$, esto da $0.20$, todo valor propio cuyo módulo esté por encima de $0.20$ en la columna de la **PC2**, nos dará las variables que conforman esta componente. Por tanto la interpretación sería que la **PC2** está caracterizada por una muestra caracterizada por el género, educación, experiencia previa y minoría.
 
-- **PC3:** El comportamiento de los valores propios de esta componente es similar a la primera. Podemos decir que esta muestra está caracterizada por la educación, tiempo de trabajo, experiencia previa y minoría.
+- **PC3:** El comportamiento de los valores propios de esta componente es similar a la primera. Podemos decir que esta muestra está caracterizada por el tiempo de trabajo, experiencia previa y minoría.
 
 Por último podemos ver el biplot de las dos primeras componentes:
 
