@@ -5,6 +5,7 @@ load_data <- function() {
 
 main <- function(){
     data <- load_data()
+    data$id <- NULL
 
     png('images/correlation-plot.png')
     plot(data)
@@ -29,6 +30,10 @@ main <- function(){
     print("")
     print("     --- ACP Rotation ---")
     print(acp$rotation)
+    
+    png('images/bi-plot.png')
+    biplot(acp)
+    dev.off()
 }
 
 main()
