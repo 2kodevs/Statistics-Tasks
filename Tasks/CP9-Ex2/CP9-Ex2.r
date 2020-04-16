@@ -1,5 +1,5 @@
 load_data <- function() {
-    data <- read.csv('files/Employee data.csv')
+    data <- read.csv('files/Employee_data.csv')
     return(data)
 }
 
